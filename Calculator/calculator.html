@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<style>
+    h1 
+    {
+        text-align: center;
+        font-size: 70px;
+    }
+    form 
+    {
+        box-shadow:30px 30px 20px lightgray;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        width:500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+    form .input-container
+    {
+     width: 100%;
+     height: 10vh;
+      input 
+      {
+        padding-left: 40px;
+        border: 2px solid gray;
+        border-radius: 50px;
+        width: 90%;
+        height: 8vh;
+        font-size: 24px;
+        box-shadow: 8px 8px 8px lightgray;
+      }
+    }
+    form .grid-container 
+    {
+    
+        width: 100%;
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        button 
+        {
+            border-radius: 50%;
+            padding: 40px;
+            background-image: linear-gradient(to right, #FF8008 0%, #FFC837  51%, #FF8008  100%);
+            box-shadow: 0 0 20px #eee;
+            border: none;
+            background-size: 200% auto;
+            font-size: 20px;
+            color: white;
+            font-weight: bolder;
+            transition: 0.5s;
+        }
+        button:hover
+        {
+            cursor: pointer;
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+
+    }    
+
+         
+</style>
+<body>
+    <h1>Basic Calculator</h1>
+    <form onsubmit="return false;">
+        <div class="input-container">
+            <input type="text" name="output" onkeyup="
+           if(isAlpha(output.value))
+           {
+            alert('enter only numbers and arthemetic');
+            output.value = output.value.slice(0,-1);
+           }
+          ">
+        </div>
+        <div class="grid-container">
+            <button type="button"  onclick="output.value = output.value.slice(0,-1)">AC </button>
+            <button type="button"  onclick=" output.value=''">Del</button>
+            <button type="button"  onclick="output.value +='%' "> % </button>
+            <button type="button"  onclick="output.value +='+'"> + </button>
+            <button type="button"  onclick="output.value +='1'"> 1 </button>
+            <button type="button"  onclick="output.value +='2'"> 2 </button>
+            <button type="button"  onclick="output.value +='3'"> 3 </button>
+            <button type="button"  onclick="output.value +='-'"> - </button>
+            <button type="button"  onclick="output.value +='4'"> 4 </button>
+            <button type="button"  onclick="output.value +='5'"> 5 </button>
+            <button type="button"  onclick="output.value +='6'"> 6 </button>
+            <button type="button"  onclick="output.value +='*'"> * </button>
+            <button type="button"  onclick="output.value +='7'"> 7 </button>
+            <button type="button"  onclick="output.value +='8'"> 8 </button>
+            <button type="button"  onclick="output.value +='9'"> 9 </button>
+            <button type="button"  onclick="output.value +='/'"> / </button>
+            <button type="button"  onclick="output.value +='0'"> 0 </button>
+            <button type="button"  onclick="output.value +='.'"> . </button>
+            <button class="eq-button" type="button" onclick="
+            try{
+                output.value = eval(output.value)
+            }
+            catch(error)
+            {
+                alert('Invalid Expression')
+                output.value='';
+            }
+             "> = </button>
+              <button type="button"  onclick="output.value +='**'"> **</button>
+        </div>
+    </form>
+    <script>
+     function isAlpha(str) {
+    return /[a-zA-Z]/.test(str);
+     }
+     const inputElement = document.querySelector('input');
+
+inputElement.addEventListener('keydown', (event) => {
+    if (event.key === "Enter" || event.key === "Return") {
+        event.preventDefault(); // Prevent default action of the Enter key (submitting a form or inserting a newline)
+        inputElement.value = output.value; // Set input value to output value
+    }
+});
+
+    </script>
+</body>
+</html>
